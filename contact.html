@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact Yahan Yu - send a message or get in touch" />
+  <title>Contact Me - Yahan Yu</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    // Apply theme before paint to avoid flash
+    (function () {
+      var saved = localStorage.getItem("theme");
+      var prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      var theme =
+        saved === "light" || saved === "dark"
+          ? saved
+          : prefersDark
+          ? "dark"
+          : "light";
+      if (theme === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
+</head>
+<body>
+  <!-- Background decorations -->
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+  <div class="bg-blob blob-3"></div>
+
+  <!-- Top navigation -->
+  <header class="nav">
+    <div class="nav-logo">MyProfile</div>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="projects.html" class="nav-link">Projects</a>
+      <a href="resume.html" class="nav-link">Resume</a>
+      <a href="contact.html" class="nav-link active">Contact Me</a>
+    </nav>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" type="button">
+      <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Contact Me -->
+  <section class="about">
+    <div class="section-inner">
+      <h2 class="section-title">Contact Me</h2>
+      <p class="section-lead">I'd love to hear from you — drop a message and I'll get back to you soon.</p>
+
+      <div class="about-grid">
+        <!-- Contact details -->
+        <article class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16v16H4z"></path>
+              <path d="M22 6l-10 7L2 6"></path>
+            </svg>
+          </div>
+          <h3>Get in touch</h3>
+          <p>Whether it's a project idea, a collaboration, or just a hello — my inbox is always open.</p>
+          <ul class="contact-list">
+            <li>Email: Yahan.Yu26@student.xjtlu.edu.cn</li>
+            <li>Location: SuZhou</li>
+            <li>Usually replies within a day</li>
+          </ul>
+        </article>
+
+        <!-- Contact form -->
+        <article class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </div>
+          <h3>Send a message</h3>
+
+          <form id="contact-form" class="contact-form">
+            <label for="contact-name">Name</label>
+            <input id="contact-name" name="Name" type="text" placeholder="Your name" autocomplete="name" required />
+
+            <label for="contact-email">Email</label>
+            <input id="contact-email" name="Email" type="email" placeholder="you@example.com" autocomplete="email" required />
+
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="Message" rows="4" placeholder="How can I help?" required></textarea>
+
+            <button id="contact-submit" type="submit" class="contact-send-btn">Send Message</button>
+            <p id="contact-status" class="contact-status" role="status" aria-live="polite" hidden></p>
+          </form>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2026 Yahan Yu. Crafted with care.</p>
+  </footer>
+
+  <script src="script.js?v=3"></script>
+
+  <!-- Contact form → Supabase (contacts table) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    (function () {
+      const SUPABASE_URL = "https://pxtksejcajkmznafpwmp.supabase.co";
+      const SUPABASE_KEY = "sb_publishable_0eTx71e0jfYJwTBNzDqhzA_vsdfJy-r";
+      const TABLE = "contacts";
+
+      const form = document.getElementById("contact-form");
+      const statusEl = document.getElementById("contact-status");
+      const submitBtn = document.getElementById("contact-submit");
+
+      // Reuse the CDN SDK; if it failed to load, show a clear error instead.
+      const client =
+        window.supabase && typeof window.supabase.createClient === "function"
+          ? window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY)
+          : null;
+
+      function setStatus(message, kind) {
+        statusEl.textContent = message;
+        statusEl.className = "contact-status" + (kind ? " " + kind : "");
+        statusEl.hidden = false;
+      }
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        if (!client) {
+          setStatus("Couldn't connect. Please try again later.", "is-error");
+          return;
+        }
+
+        const name = document.getElementById("contact-name").value.trim();
+        const email = document.getElementById("contact-email").value.trim();
+        const message = document.getElementById("contact-message").value.trim();
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending…";
+        setStatus("Sending…", "is-loading");
+
+        try {
+          const { error } = await client
+            .from(TABLE)
+            .insert({ name: name, email: email, message: message });
+          if (error) throw error;
+
+          form.reset();
+          setStatus("Thanks! Your message has been sent.", "is-success");
+        } catch (err) {
+          console.error("Contact form insert failed:", err);
+          setStatus("Sorry, something went wrong. Please try again.", "is-error");
+        } finally {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Send Message";
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

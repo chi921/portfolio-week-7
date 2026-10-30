@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Resume - Yahan Yu's background, experience, education, and skills" />
+  <title>Resume - Yahan Yu</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    // Apply theme before paint to avoid flash
+    (function () {
+      var saved = localStorage.getItem("theme");
+      var prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      var theme =
+        saved === "light" || saved === "dark"
+          ? saved
+          : prefersDark
+          ? "dark"
+          : "light";
+      if (theme === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
+</head>
+<body>
+  <!-- Background decorations -->
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+  <div class="bg-blob blob-3"></div>
+
+  <!-- Top navigation -->
+  <header class="nav">
+    <div class="nav-logo">MyProfile</div>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="projects.html" class="nav-link">Projects</a>
+      <a href="resume.html" class="nav-link active">Resume</a>
+      <a href="contact.html" class="nav-link">Contact Me</a>
+    </nav>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" type="button">
+      <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Resume -->
+  <section id="resume" class="resume">
+    <div class="section-inner">
+      <h2 class="section-title">Resume</h2>
+      <p class="section-lead">A snapshot of my background, experience, and skills.</p>
+
+      <div class="resume-stack">
+        <!-- Summary -->
+        <article class="card resume-card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="4"></circle>
+              <path d="M4 21v-1a8 8 0 0 1 16 0v1"></path>
+            </svg>
+          </div>
+          <h3>Summary</h3>
+          <p>I am a graduate student majoring in Digital Education at Xi'an Jiaotong – Liverpool University, originally from Rizhao, Shandong Province. I am sincere, a good communicator, and highly responsible; diligent and meticulous in my work, empathetic, and experienced in both teaching and administrative practice. I bring a strong sense of teamwork, carry out tasks effectively, and approach all my work with diligence and responsibility.</p>
+        </article>
+
+        <!-- Experience -->
+        <article class="card resume-card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2"></rect>
+              <path d="M16 7V5a2 2 0 0 0-2-2H10a2 2 0 0 0-2 2v2"></path>
+            </svg>
+          </div>
+          <h3>Experience</h3>
+          <div class="resume-entries">
+            <div class="resume-entry">
+              <div class="resume-meta">
+                <h4 class="resume-role">Administrative Specialist (Office Clerk)</h4>
+                <div class="resume-org">Rizhao Administration for Market Regulation (High-tech Zone Branch) &middot; Apr 2024 &ndash; Feb 2025</div>
+              </div>
+              <ul class="resume-bullets">
+                <li><strong>Document Lifecycle Management:</strong> Managed the full cycle of official document processing, including registration, circulation, and archiving. Strictly enforced confidentiality protocols to ensure the secure and timely transmission of sensitive government files.</li>
+                <li><strong>Resource &amp; Inventory Control:</strong> Established a comprehensive ledger for office supplies; conducted regular inventory audits to optimize resource allocation and reduce waste.</li>
+                <li><strong>Event Coordination:</strong> Orchestrated logistical support for high-level meetings and events, including venue setup, reception protocols, and scheduling, ensuring seamless operations.</li>
+                <li><strong>Data Reporting:</strong> Compiled and analyzed statistical information periodically to generate compliance reports in accordance with regulatory standards.</li>
+              </ul>
+            </div>
+            <div class="resume-entry">
+              <div class="resume-meta">
+                <h4 class="resume-role">Marketing Specialist</h4>
+                <div class="resume-org">Shanghai Qingze Information Technology Co., Ltd. &middot; Oct 2023 &ndash; Mar 2024</div>
+              </div>
+              <ul class="resume-bullets">
+                <li><strong>Campaign Execution:</strong> Planned and executed omnichannel marketing campaigns (online &amp; offline), including sales promotions and strategic brand activations to drive market penetration.</li>
+                <li><strong>Community Management:</strong> Spearheaded the operation and maintenance of English-language social media communities (specifically X/Twitter), enhancing brand visibility in international markets.</li>
+                <li><strong>CRM &amp; Feedback Analysis:</strong> Managed customer relationships by systematically collecting feedback and resolving inquiries, ensuring a high response rate and customer satisfaction.</li>
+              </ul>
+            </div>
+            <div class="resume-entry">
+              <div class="resume-meta">
+                <h4 class="resume-role">English Instructor</h4>
+                <div class="resume-org">Rizhao Rende Education Training School Co., Ltd. &middot; Jun 2022 &ndash; Sep 2023</div>
+              </div>
+              <ul class="resume-bullets">
+                <li><strong>Curriculum Delivery:</strong> Delivered comprehensive English instruction to junior and senior high school students, targeting improvements in listening, reading, and speaking proficiency.</li>
+                <li><strong>Pedagogical Development:</strong> Designed tailored lesson plans and supplementary courseware, employing diverse teaching methodologies to engage students with varying learning styles.</li>
+                <li><strong>Personalized Assessment:</strong> Conducted diagnostic assessments for 1-on-1 and small group sessions; dynamically adjusted teaching pace and content to address individual weaknesses.</li>
+                <li><strong>Progress Tracking:</strong> Provided detailed performance feedback to students and parents through regular reports, clarifying academic strengths and outlining strategic improvement plans.</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+
+        <!-- Education -->
+        <article class="card resume-card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10L12 4 2 10l10 6 10-6z"></path>
+              <path d="M6 12v5c3 1.5 9 1.5 12 0v-5"></path>
+            </svg>
+          </div>
+          <h3>Education</h3>
+          <div class="resume-entries">
+            <div class="resume-entry">
+              <div class="resume-meta">
+                <h4 class="resume-role">Master's Degree, Digital Education</h4>
+                <div class="resume-org">Xi'an Jiaotong – Liverpool University &middot; 2026 &ndash; 2028 (expected)</div>
+              </div>
+            </div>
+            <div class="resume-entry">
+              <div class="resume-meta">
+                <h4 class="resume-role">Bachelor's Degree, Business English</h4>
+                <div class="resume-org">Shandong Vocational and Technical University of International Studies &middot; 2019 &ndash; 2023</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Skills -->
+        <article class="card resume-card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </div>
+          <h3>Skills</h3>
+          <div class="resume-skill-group">
+            <h4 class="resume-skill-label">Languages</h4>
+            <ul class="skill-list">
+              <li><span class="tag">TEM-4</span></li>
+              <li><span class="tag">CET-6</span></li>
+              <li><span class="tag">IELTS 6.5 (overall)</span></li>
+              <li><span class="tag">Mandarin Proficiency Test: Level 2-A</span></li>
+            </ul>
+          </div>
+          <div class="resume-skill-group">
+            <h4 class="resume-skill-label">Tools / Technologies</h4>
+            <ul class="skill-list">
+              <li><span class="tag">Excel</span></li>
+              <li><span class="tag">Trae</span></li>
+            </ul>
+          </div>
+          <div class="resume-skill-group">
+            <h4 class="resume-skill-label">Soft Skills</h4>
+            <ul class="skill-list">
+              <li><span class="tag">Communication</span></li>
+              <li><span class="tag">Adaptability</span></li>
+              <li><span class="tag">Creativity</span></li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="resume-downloads">
+      <a href="downloads/resume-en.pdf" class="btn btn-primary" download>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        Download CV (English)
+      </a>
+      <a href="downloads/resume-zh.pdf" class="btn btn-ghost" download>
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+        下载简历（中文）
+      </a>
+    </div>
+    <p>© 2026 Yahan Yu. Crafted with care.</p>
+  </footer>
+
+  <script src="script.js?v=3"></script>
+</body>
+</html>

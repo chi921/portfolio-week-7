@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Let's Learning English</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --ink: #4a3f6b;
+      --pink: #ff8fc7;
+      --orange: #ffb26b;
+      --green: #3ecf7a;
+      --red: #ff5d6c;
+    }
+
+    html, body { height: 100%; }
+
+    body {
+      font-family: "Fredoka", "Comic Sans MS", "Chalkboard SE", "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #aee7ff 0%, #fdf1fa 100%);
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Floating background decorations */
+    .deco {
+      position: fixed;
+      font-size: 42px;
+      opacity: 0.55;
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
+      animation: floaty 6s ease-in-out infinite;
+    }
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0) rotate(-6deg); }
+      50%      { transform: translateY(-18px) rotate(6deg); }
+    }
+
+    /* Only ONE screen is visible at a time — .hidden wins over everything */
+    .hidden { display: none !important; }
+
+    .screen {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 560px;
+      padding: 32px 20px 48px;
+      text-align: center;
+      animation: pop-in 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes pop-in {
+      from { opacity: 0; transform: scale(0.85) translateY(24px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .title {
+      font-size: clamp(38px, 8vw, 56px);
+      font-weight: 700;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #ff6faf, #b18cff 55%, #5bb8ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 14px;
+    }
+
+    .subtitle {
+      font-size: clamp(17px, 3.5vw, 21px);
+      font-weight: 500;
+      color: #7a6f9a;
+    }
+
+    /* ---------- Big bouncy candy button ---------- */
+    .btn-start {
+      margin-top: 30px;
+      font-family: inherit;
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, var(--pink), var(--orange));
+      border: none;
+      border-radius: 100px;
+      padding: 18px 56px;
+      cursor: pointer;
+      box-shadow: 0 8px 0 #e0699f, 0 16px 26px rgba(224, 105, 159, 0.35);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      animation: bounce 1.8s ease-in-out infinite;
+    }
+    .btn-start:hover {
+      animation: none;
+      transform: translateY(-4px) scale(1.05);
+    }
+    .btn-start:active {
+      animation: none;
+      transform: translateY(4px);
+      box-shadow: 0 3px 0 #e0699f, 0 8px 14px rgba(224, 105, 159, 0.3);
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%      { transform: translateY(-8px); }
+    }
+
+    /* ---------- Home ---------- */
+    .home-mascot {
+      font-size: clamp(56px, 12vw, 84px);
+      letter-spacing: 8px;
+      margin-bottom: 18px;
+      animation: floaty 4s ease-in-out infinite;
+    }
+
+    /* ---------- Quiz ---------- */
+    .quiz-card {
+      background: #fff;
+      border: 5px dashed var(--orange);
+      border-radius: 30px;
+      padding: 18px;
+      display: inline-block;
+      box-shadow: 0 14px 34px rgba(74, 63, 107, 0.15);
+    }
+    .quiz-img {
+      display: block;
+      width: min(300px, 68vw);
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 20px;
+    }
+    .quiz-prompt {
+      margin-top: 20px;
+      font-size: clamp(20px, 4.5vw, 26px);
+      font-weight: 600;
+    }
+
+    .options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 22px;
+    }
+    @media (max-width: 420px) {
+      .options { grid-template-columns: 1fr; }
+    }
+
+    .option-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-family: inherit;
+      font-size: clamp(20px, 5vw, 25px);
+      font-weight: 600;
+      padding: 18px 12px;
+      background: #fff;
+      color: var(--ink);
+      border: 4px solid var(--c, var(--pink));
+      border-radius: 22px;
+      cursor: pointer;
+      box-shadow: 0 6px 0 rgba(74, 63, 107, 0.12);
+      transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+    .option-btn:hover:not(:disabled) { transform: translateY(-3px) scale(1.03); }
+    .option-btn:disabled { cursor: default; }
+
+    .option-btn .mark {
+      font-size: 1.1em;
+      font-weight: 700;
+      min-width: 1em;
+    }
+
+    .option-btn.correct {
+      border-color: var(--green);
+      background: #e6fbee;
+      animation: cheer 0.5s ease;
+    }
+    .option-btn.correct .mark { color: var(--green); }
+
+    .option-btn.wrong {
+      border-color: var(--red);
+      background: #ffecec;
+      animation: shake 0.4s ease;
+    }
+    .option-btn.wrong .mark { color: var(--red); }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25%      { transform: translateX(-7px); }
+      50%      { transform: translateX(7px); }
+      75%      { transform: translateX(-4px); }
+    }
+    @keyframes cheer {
+      0%   { transform: scale(1); }
+      50%  { transform: scale(1.12) rotate(-2deg); }
+      100% { transform: scale(1); }
+    }
+
+    /* ---------- Victory ---------- */
+    .victory-trophy {
+      font-size: clamp(72px, 16vw, 110px);
+      animation: cheer 1.2s ease infinite;
+    }
+    .confetti {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 2;
+    }
+    .confetti span {
+      position: absolute;
+      top: -12%;
+      animation: confetti-fall linear forwards;
+    }
+    @keyframes confetti-fall {
+      to { transform: translateY(125vh) rotate(380deg); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Floating decorations -->
+  <span class="deco" style="top:8%;left:6%">☁️</span>
+  <span class="deco" style="top:14%;right:8%;animation-delay:-2s">🎈</span>
+  <span class="deco" style="bottom:12%;left:10%;animation-delay:-4s">⭐</span>
+  <span class="deco" style="bottom:16%;right:7%;animation-delay:-1s">🌈</span>
+
+  <!-- ============ HOME SCREEN ============ -->
+  <section id="screen-home" class="screen">
+    <div class="home-mascot">🍎 🐶 👀</div>
+    <h1 class="title">Let's learning English</h1>
+    <p class="subtitle">Look at the picture. Tap the right word!</p>
+    <button id="start-btn" class="btn-start" type="button">▶ Start</button>
+  </section>
+
+  <!-- ============ QUIZ SCREEN ============ -->
+  <section id="screen-quiz" class="screen hidden">
+    <div class="quiz-card">
+      <img id="quiz-img" class="quiz-img" src="1.jpg" alt="apple" />
+    </div>
+    <p class="quiz-prompt">What is this? 🤔</p>
+    <div id="options" class="options"></div>
+  </section>
+
+  <!-- ============ VICTORY SCREEN (hidden until Q3 is answered correctly) ============ -->
+  <section id="screen-victory" class="screen hidden">
+    <div id="confetti" class="confetti" aria-hidden="true"></div>
+    <div class="victory-trophy">🏆</div>
+    <h1 class="title">Great Job!</h1>
+    <p class="subtitle">You know all the words! 🌟</p>
+    <button id="again-btn" class="btn-start" type="button">🔁 Play Again</button>
+  </section>
+
+  <script>
+    // ============ Quiz data ============
+    const QUESTIONS = [
+      { img: "1.jpg", word: "apple", options: ["apple", "banana", "pear", "grape"] },
+      { img: "2.jpg", word: "dog",   options: ["dog", "cat", "mouse", "bird"] },
+      { img: "3.jpg", word: "eye",   options: ["eye", "hand", "foot", "nose"] },
+    ];
+
+    // Candy border colors cycled across the four option buttons
+    const PALETTE = ["#ff8fc7", "#5bb8ff", "#ffc93d", "#b18cff"];
+
+    let current = 0;
+
+    const screens = {
+      home: document.getElementById("screen-home"),
+      quiz: document.getElementById("screen-quiz"),
+      victory: document.getElementById("screen-victory"),
+    };
+    const imgEl = document.getElementById("quiz-img");
+    const optionsEl = document.getElementById("options");
+
+    // Show exactly one screen; hide all the others.
+    function show(name) {
+      for (const key in screens) {
+        screens[key].classList.toggle("hidden", key !== name);
+      }
+    }
+
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function renderQuestion() {
+      const q = QUESTIONS[current];
+      imgEl.src = q.img;
+      imgEl.alt = q.word;
+      optionsEl.innerHTML = "";
+      shuffle([...q.options]).forEach((word, i) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "option-btn";
+        btn.style.setProperty("--c", PALETTE[i % PALETTE.length]);
+        const w = document.createElement("span");
+        w.textContent = word;
+        const mark = document.createElement("span");
+        mark.className = "mark";
+        mark.setAttribute("aria-hidden", "true");
+        btn.appendChild(w);
+        btn.appendChild(mark);
+        btn.addEventListener("click", () => pick(btn, word, q));
+        optionsEl.appendChild(btn);
+      });
+    }
+
+    // Wrong pick → red ✗ on that option, options stay on screen.
+    // Correct pick → green ✓, then advance (or celebrate after Q3).
+    function pick(btn, word, q) {
+      const mark = btn.querySelector(".mark");
+      if (word === q.word) {
+        btn.classList.add("correct");
+        mark.textContent = "✓";
+        [...optionsEl.children].forEach((b) => (b.disabled = true));
+        setTimeout(() => {
+          current += 1;
+          if (current < QUESTIONS.length) {
+            renderQuestion();
+          } else {
+            show("victory");
+            launchConfetti();
+          }
+        }, 900);
+      } else {
+        btn.classList.add("wrong");
+        mark.textContent = "✗";
+        btn.disabled = true;
+      }
+    }
+
+    function launchConfetti() {
+      const wrap = document.getElementById("confetti");
+      wrap.innerHTML = "";
+      const glyphs = ["🎉", "⭐", "🎊", "🎈", "🌟", "💛", "💜", "💙"];
+      for (let i = 0; i < 30; i++) {
+        const s = document.createElement("span");
+        s.textContent = glyphs[i % glyphs.length];
+        s.style.left = Math.random() * 100 + "%";
+        s.style.fontSize = 18 + Math.random() * 22 + "px";
+        s.style.animationDelay = Math.random() * 0.9 + "s";
+        s.style.animationDuration = 2.2 + Math.random() * 1.6 + "s";
+        wrap.appendChild(s);
+      }
+    }
+
+    document.getElementById("start-btn").addEventListener("click", () => {
+      current = 0;
+      renderQuestion();
+      show("quiz");
+    });
+
+    document.getElementById("again-btn").addEventListener("click", () => {
+      current = 0;
+      show("home");
+    });
+
+    // Before any interaction: home screen only.
+    show("home");
+  </script>
+</body>
+</html>

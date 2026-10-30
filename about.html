@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="About Yahan Yu - profile, skills, and experience" />
+  <title>About - Yahan Yu</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script>
+    // Apply theme before paint to avoid flash
+    (function () {
+      var saved = localStorage.getItem("theme");
+      var prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      var theme =
+        saved === "light" || saved === "dark"
+          ? saved
+          : prefersDark
+          ? "dark"
+          : "light";
+      if (theme === "dark") {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    })();
+  </script>
+</head>
+<body>
+  <!-- Background decorations -->
+  <div class="bg-blob blob-1"></div>
+  <div class="bg-blob blob-2"></div>
+  <div class="bg-blob blob-3"></div>
+
+  <!-- Top navigation -->
+  <header class="nav">
+    <div class="nav-logo">MyProfile</div>
+    <nav class="nav-links">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link active">About</a>
+      <a href="projects.html" class="nav-link">Projects</a>
+      <a href="resume.html" class="nav-link">Resume</a>
+      <a href="contact.html" class="nav-link">Contact Me</a>
+    </nav>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" type="button">
+      <svg class="icon-sun" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="4"></circle>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+      </svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
+  </header>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="section-inner">
+      <h2 class="section-title">About Me</h2>
+      <p class="section-lead">A short tagline: someone who loves crafting delightful experiences with code.</p>
+
+      <div class="about-grid">
+        <!-- Profile card -->
+        <article class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="4"></circle>
+              <path d="M4 21v-1a8 8 0 0 1 16 0v1"></path>
+            </svg>
+          </div>
+          <h3>Profile</h3>
+          <p>I am Yu Yahan, born in 2001. I come from Rizhao, Shandong. Currently, I'm pursuing my master's degree in Digital Education at Xi'an-Jiaotong-Liverpool University. I am a Virgo and identify as an ENTP. In my free time, I love keeping journals and working out. I'm open to new connections, so don't hesitate to get in touch with me!</p>
+        </article>
+
+        <!-- Skills card -->
+        <article class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </div>
+          <h3>Hobbies</h3>
+          <ul class="skill-list">
+            <li><span class="tag">Fitness</span></li>
+            <li><span class="tag">Journaling</span></li>
+            <li><span class="tag">Drawing</span></li>
+            <li><span class="tag">Shopping</span></li>
+          </ul>
+        </article>
+
+        <!-- Favorite Songs card -->
+        <article class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 18V5l12-2v13"></path>
+              <circle cx="6" cy="18" r="3"></circle>
+              <circle cx="18" cy="16" r="3"></circle>
+            </svg>
+          </div>
+          <h3>Favorite Songs</h3>
+          <ul class="songs-list">
+            <li>
+              <span class="song-bullet"></span>
+              <div>
+                <div class="song-title"><a href="https://163cn.tv/bf7xUZ7U" target="_blank" rel="noopener">别怕变老</a></div>
+                <div class="song-artist">王以太 / 艾热 AIR</div>
+              </div>
+            </li>
+            <li>
+              <span class="song-bullet"></span>
+              <div>
+                <div class="song-title"><a href="https://163cn.tv/bf7x5Jxy" target="_blank" rel="noopener">江南 (River South)</a></div>
+                <div class="song-artist">林俊杰</div>
+              </div>
+            </li>
+            <li>
+              <span class="song-bullet"></span>
+              <div>
+                <div class="song-title"><a href="https://163cn.tv/bf7xWxbG" target="_blank" rel="noopener">Sorry</a></div>
+                <div class="song-artist">Justin Bieber</div>
+              </div>
+            </li>
+          </ul>
+        </article>
+
+        <!-- Experience card -->
+        <article class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2"></rect>
+              <path d="M16 7V5a2 2 0 0 0-2-2H10a2 2 0 0 0-2 2v2"></path>
+            </svg>
+          </div>
+          <h3>Experience</h3>
+          <ul class="timeline">
+            <li>
+              <div class="timeline-time">2026 - Present</div>
+              <div class="timeline-title">Postgraduate study at XJTLU</div>
+            </li>
+            <li>
+              <div class="timeline-time">2023 - 2026</div>
+              <div class="timeline-title">Working and internship experience</div>
+            </li>
+            <li>
+              <div class="timeline-time">2019 - 2023</div>
+              <div class="timeline-title">Studied Business English at SWUT</div>
+            </li>
+          </ul>
+        </article>
+
+        <!-- Contact card -->
+        <article class="card">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16v16H4z"></path>
+              <path d="M22 6l-10 7L2 6"></path>
+            </svg>
+          </div>
+          <h3>Contact</h3>
+          <ul class="contact-list">
+            <li>Email: Yahan.Yu26@student.xjtlu.edu.cn</li>
+            <li>Location: SuZhou</li>
+          </ul>
+
+          <a href="contact.html" class="btn btn-ghost contact-cta">Contact Me</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fun Facts About Me -->
+  <section class="fun-facts">
+    <div class="section-inner">
+      <h2 class="section-title">Fun Facts About Me</h2>
+      <div class="facts-grid">
+        <div class="fact">
+          <span class="fact-icon">♍</span>
+          <p>I'm an ENTP Virgo — full of wild ideas but will tweak tiny details over and over.</p>
+        </div>
+        <div class="fact">
+          <span class="fact-icon">📚</span>
+          <p>I keep a journal almost every day — some entries are deep thoughts, some are just grocery lists.</p>
+        </div>
+        <div class="fact">
+          <span class="fact-icon">🏋️</span>
+          <p>I work out regularly and swear by the post-workout glow as my secret superpower.</p>
+        </div>
+        <div class="fact">
+          <span class="fact-icon">✏️</span>
+          <p>I love drawing in my free time — mostly sketches of people and quiet little scenes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2026 Yahan Yu. Crafted with care.</p>
+  </footer>
+
+  <script src="script.js?v=3"></script>
+</body>
+</html>
